@@ -86,10 +86,11 @@ Watchdog (WD)
 
 **Encoder modes**
 
-I2C - encoder operation via i2c bus
-I2CPWM - configuration via i2c bus, receiving data as an analog (PWM) signal
-PWM - receiving data in the form of an analog signal,
-in this mode it is impossible to write to AS5600 registers
+- I2C - encoder operation via i2c bus
+
+- I2CPWM - configuration via i2c bus, receiving data as an analog (PWM) signal
+
+- PWM - receiving data in the form of an analog signal, in this mode it is impossible to write to AS5600 registers
 
 
 **.getAutomaticGainControl method**
