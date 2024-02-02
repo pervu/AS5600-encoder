@@ -22,6 +22,9 @@ Arduino library for AS5600 and AS5600L 12-bits Magnetic Encoder
 
 EncAS5600 *as5600;
 
+// Encoder handler
+void encTick(EncAS5600 &e);
+
 void setup() {
     // Create an object to communicate with the encoder,
     // use the encoder with default parameters
@@ -40,9 +43,24 @@ void setup() {
 void loop() {
 // There is no need to use any updates in the loop
 }
+
+void encTick(EncAS5600 &e)
+{
+    String dir;
+    if (e.getRightDir())
+    {
+        dir = "R";
+    }
+    else{
+        dir = "L";
+    }
+
+    printf("Speed: %d\t Ticks: %d\t AngleDeg: %f\t RawAngle: %d\t Dir: %s\n", 
+            e.getSpeed(), e.getTicks(), e.getAngDeg(), e.getRawAngle(), dir);
+}
 ```
 
-## Descriprions
+## Descriptions
 
 **AS5600 chip**
 <p align="center">
