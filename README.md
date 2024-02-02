@@ -51,6 +51,7 @@ void loop() {
 
 OUT is PWM pin (uses in PWM mode), to get analog values from AS5600
 
+
 **Configure AS5600**
 
 .sda - I2C sda pin (default 21)
@@ -61,6 +62,7 @@ OUT is PWM pin (uses in PWM mode), to get analog values from AS5600
 .delta - the higher the value, the lower the sensitivity of the encoder (default 110)
 .period - encoder polling frequency in µs (default 10000)
 .reg - register configuration for AS5600 (See details below)
+
 
 **AS5600 register configuration**
 
@@ -81,12 +83,14 @@ Fast Filter Threshold (FTH)
 Watchdog (WD)
 0 = OFF, 1 = ON
 
+
 **Encoder modes**
 
 I2C - encoder operation via i2c bus
 I2CPWM - configuration via i2c bus, receiving data as an analog (PWM) signal
 PWM - receiving data in the form of an analog signal,
 in this mode it is impossible to write to AS5600 registers
+
 
 **.getAutomaticGainControl method**
 
