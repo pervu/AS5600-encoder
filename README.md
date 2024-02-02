@@ -47,13 +47,8 @@ void loop() {
 void encTick(EncAS5600 &e)
 {
     String dir;
-    if (e.getRightDir())
-    {
-        dir = "R";
-    }
-    else{
-        dir = "L";
-    }
+    if (e.getRightDir()) dir = "R";
+    else dir = "L";
 
     printf("Speed: %d\t Ticks: %d\t AngleDeg: %f\t RawAngle: %d\t Dir: %s\n", 
             e.getSpeed(), e.getTicks(), e.getAngDeg(), e.getRawAngle(), dir);
@@ -105,9 +100,7 @@ Watchdog (WD)
 **Encoder modes**
 
 - I2C - encoder operation via i2c bus
-
 - I2CPWM - configuration via i2c bus, receiving data as an analog (PWM) signal
-
 - PWM - receiving data in the form of an analog signal, in this mode it is impossible to write to AS5600 registers
 
 
