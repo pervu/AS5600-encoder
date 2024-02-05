@@ -14,6 +14,7 @@ Arduino library for AS5600 and AS5600L 12-bits Magnetic Encoder
 - Get the Rotation Speed
 - Check the magnet
 - Get magnetic intensity
+- Filter input signals
 
 
 ## AS5600 QuickStart
@@ -65,46 +66,46 @@ void encTick(EncAS5600 &e)
 OUT is PWM pin (uses in PWM mode), to get analog values from AS5600
 
 
-**Configure AS5600**
+**Configure AS5600 as5600config_t**
 
-.sda - I2C sda pin (default 21)
-.scl - I2C scl pin (default 22)
-.pwmPin - pin to read data in PWM and I2CPWM modes (default 15)
-.i2cAddress - adress AS5600 (default 0x36)
-.filter - filter of input data (1 - ON, 0 - OFF) (default 0)
-.delta - the higher the value, the lower the sensitivity of the encoder (default 110)
-.period - encoder polling frequency in µs (default 10000)
-.reg - register configuration for AS5600 (See details below)
-
-
-**AS5600 register configuration**
-
-Power Mode (PM)
-00 = NOM, 01 = LPM1, 10 = LPM2, 11 = LPM3
-Hysteresis (HYST()
-00 = OFF, 01 = 1 LSB, 10 = 2 LSBs, 11 = 3 LSBs
-Output Stage (OUTS)
-00 = analog (full range from 0% to 100% between GND and VDD), 01 = analog
-(reduced range from 10% to 90% between GND and VDD), 10 = digital PWM
-PWM Frequency (PWMF)
-00 = 115 Hz; 01 = 230 Hz; 10 = 460 Hz; 11 = 920 Hz
-Slow Filter (SF)
-00 = 16x (Forced in Low Power Mode (LPM)); 01 = 8x; 10 = 4x; 11 = 2x
-Fast Filter Threshold (FTH)
-000 = slow filter only, 001 = 6 LSBs, 010 = 7 LSBs, 011 = 9 LSBs,100 = 18 LSBs, 101
-= 21 LSBs, 110 = 24 LSBs, 111 = 10 LSBs
-Watchdog (WD)
-0 = OFF, 1 = ON
+.sda - I2C sda pin (default 21)<br>
+.scl - I2C scl pin (default 22)<br>
+.pwmPin - pin to read data in PWM and I2CPWM modes (default 15)<br>
+.i2cAddress - adress AS5600 (default 0x36)<br>
+.filter - filter of input data (1 - ON, 0 - OFF) (default 0)<br>
+.delta - the higher the value, the lower the sensitivity of the encoder (default 110)<br>
+.period - encoder polling frequency in µs (default 10000)<br>
+.reg - register configuration for AS5600 (See details below)<br>
 
 
-**Encoder modes**
+**AS5600 register configuration regConf_t reg**
+
+Power Mode (PM)<br>
+00 = NOM, 01 = LPM1, 10 = LPM2, 11 = LPM3<br>
+Hysteresis (HYST()<br>
+00 = OFF, 01 = 1 LSB, 10 = 2 LSBs, 11 = 3 LSBs<br>
+Output Stage (OUTS)<br>
+00 = analog (full range from 0% to 100% between GND and VDD), 01 = analog<br>
+(reduced range from 10% to 90% between GND and VDD), 10 = digital PWM<br>
+PWM Frequency (PWMF)<br>
+00 = 115 Hz; 01 = 230 Hz; 10 = 460 Hz; 11 = 920 Hz<br>
+Slow Filter (SF)<br>
+00 = 16x (Forced in Low Power Mode (LPM)); 01 = 8x; 10 = 4x; 11 = 2x<br>
+Fast Filter Threshold (FTH)<br>
+000 = slow filter only, 001 = 6 LSBs, 010 = 7 LSBs, 011 = 9 LSBs,100 = 18 LSBs, 101<br>
+= 21 LSBs, 110 = 24 LSBs, 111 = 10 LSBs<br>
+Watchdog (WD)<br>
+0 = OFF, 1 = ON<br>
+
+
+**Encoder modes modetype_t**
 
 - I2C - encoder operation via i2c bus
 - I2CPWM - configuration via i2c bus, receiving data as an analog (PWM) signal
 - PWM - receiving data in the form of an analog signal, in this mode it is impossible to write to AS5600 registers
 
 
-**.getAutomaticGainControl method**
+**.getAutomaticGainControl() method**
 
 The AS5600 uses Automatic Gain Control in a closed loop to
 compensate for variations of the magnetic field strength due
